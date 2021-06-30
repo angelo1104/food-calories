@@ -41,6 +41,7 @@ export const Container = styled.div`
 
   .webcam {
     box-shadow: 1px -1px 59px -19px rgba(0, 0, 0, 0.5);
+    position: absolute;
   }
 `;
 
@@ -91,4 +92,12 @@ export const ClearButton = styled(IconButton)`
   position: absolute !important;
   top: 0;
   left: 0;
+`;
+
+export const Placeholder = styled.div`
+  background: black;
+  position: relative;
+  z-index: -10;
+  height: ${dimensions.height}px;
+  width: ${dimensions.width}px;
 `;
