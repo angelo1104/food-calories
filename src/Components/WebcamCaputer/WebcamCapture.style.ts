@@ -26,6 +26,7 @@ export const PreviewScreen = styled.div`
 `;
 
 export const Container = styled.div`
+  margin: 30px;
   display: flex;
   position: relative;
   min-width: ${dimensions.width}px;
@@ -59,7 +60,7 @@ export const CaloriesButton = styled.button`
   border-radius: 500px;
   padding: 5px 15px;
   background-color: #ffcf99;
-  color: black;
+  color: #1e1e24;
   box-shadow: 0 0 16px rgb(0 0 0 / 70%);
   display: flex;
   justify-content: center;
