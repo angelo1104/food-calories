@@ -27,6 +27,7 @@ import { ArrowForwardIos } from "@material-ui/icons";
 import searchFruit from "../../utils/searchFruit";
 import { Fruit } from "../../model/calories";
 import getMessage from "../../utils/message";
+import appleLogo from "../../images/apple-logo.jpg";
 
 interface Props {
   start: boolean;
@@ -115,8 +116,8 @@ function WebcamCapture({ start }: Props): JSX.Element {
 
       <Placeholder>
         <img
-          src="https://lh3.googleusercontent.com/proxy/Xkt8IYq5EVLhT-rmeLu86gyGN-PGzlHQIhjuPDR-Oz-KwglXZ4hrbpYcntx7lmiW0fM-Ke9wnrkIzZh2HLyp-6ux7APQGIk"
-          alt=""
+          src={appleLogo}
+          alt="apple logo"
           style={{ width: 100, height: 100 }}
         />
       </Placeholder>
