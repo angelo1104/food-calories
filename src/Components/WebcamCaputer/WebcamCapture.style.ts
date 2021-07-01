@@ -98,6 +98,11 @@ export const Placeholder = styled.div`
   background: black;
   position: relative;
   z-index: -10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: ${dimensions.height}px;
   width: ${dimensions.width}px;
+  min-height: ${dimensions.height}px;
+  min-width: ${dimensions.width}px;
 `;

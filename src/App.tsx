@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import WebcamCapture from "./Components/WebcamCaputer/WebcamCapture";
-import styled from "styled-components";
+import Header from "./Components/Header/Header";
+import { ContentWrapper } from "./App.style";
+import Content from "./Components/Content/Content";
 
 function App() {
+  const [start, setStart] = useState(false);
+
   return (
     <div>
-      <Title>AI Creepers</Title>
-      <WebcamCapture />
+      <Header />
+      <ContentWrapper>
+        <WebcamCapture start={start} />
+        <Content setStart={setStart} start={start} />
+      </ContentWrapper>
     </div>
   );
 }
-
-const Title = styled.h1`
-  color: #1e1e24;
-  text-align: center;
-  font-weight: 700;
-`;
 
 export default App;
