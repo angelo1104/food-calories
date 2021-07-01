@@ -83,7 +83,10 @@ function WebcamCapture({ start }: Props): JSX.Element {
     const file = dataURLtoFile(image, "blurha");
     const data = new FormData();
     data.append("file", file, file.name);
-    const { data: axiosData } = await axios.post("http://localhost:5000", data);
+    const { data: axiosData } = await axios.post(
+      process.env.REACT_APP_API_URL || "",
+      data
+    );
     setFruit(axiosData?.fruit);
     setDialogOpen(true);
   };
