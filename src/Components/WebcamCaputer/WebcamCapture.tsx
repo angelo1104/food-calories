@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   Dialog,
   DialogActions,
@@ -24,6 +24,9 @@ import Webcam from "react-webcam";
 import FormData from "form-data";
 import axios from "axios";
 import { ArrowForwardIos } from "@material-ui/icons";
+import searchFruit from "../../utils/searchFruit";
+import { Fruit } from "../../model/calories";
+import getMessage from "../../utils/message";
 
 interface Props {
   start: boolean;
@@ -52,8 +55,9 @@ function WebcamCapture({ start }: Props): JSX.Element {
 
   const webcamRef = useRef(null);
   const [image, setImage] = useState<string | null>(null);
-  const [dialogOpen, setDialogOpen] = useState(true);
+  const [dialogOpen, setDialogOpen] = useState(false);
   const [fruit, setFruit] = useState<string | null>(null);
+  const [fruitInfo, setFruitInfo] = useState<Fruit | null>(null);
 
   const capture = useCallback(() => {
     if (webcamRef.current) {
@@ -67,6 +71,13 @@ function WebcamCapture({ start }: Props): JSX.Element {
     setImage(null);
   };
 
+  useEffect(() => {
+    if (!fruit) return;
+
+    const results = searchFruit(fruit)[0].item;
+    setFruitInfo(results);
+  }, [fruit]);
+
   const upload = async () => {
     if (!image) return;
     const file = dataURLtoFile(image, "blurha");
@@ -77,20 +88,23 @@ function WebcamCapture({ start }: Props): JSX.Element {
     setDialogOpen(true);
   };
 
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+    clearImage();
+  };
+
   return (
     <Container>
-      <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
+      <Dialog open={dialogOpen} onClose={handleDialogClose}>
         <DialogTitle>{fruit}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            An apple(100 grams) has 480 calories. Eat them wisely.
+            {fruitInfo?.Serving} has {fruitInfo?.Calories} calories.{" "}
+            {getMessage(fruitInfo?.Calories || 6)}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <StartButton
-            style={{ margin: 20 }}
-            onClick={() => setDialogOpen(false)}
-          >
+          <StartButton style={{ margin: 20 }} onClick={handleDialogClose}>
             Okay <ArrowForwardIos className={"icon"} fontSize={"small"} />
           </StartButton>
         </DialogActions>
