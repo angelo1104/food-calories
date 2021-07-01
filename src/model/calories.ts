@@ -49,6 +49,11 @@ const calories: Fruit[] = [
     Calories: 52,
   },
   { Food: "Watermelons", Serving: "1 wedge (286 g)", Calories: 86 },
+  {
+    Food: "Plums",
+    Serving: "1 plum (60 grams)",
+    Calories: 30,
+  },
 ];
 
 export default calories;

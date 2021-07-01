@@ -28,6 +28,7 @@ import searchFruit from "../../utils/searchFruit";
 import { Fruit } from "../../model/calories";
 import getMessage from "../../utils/message";
 import appleLogo from "../../images/apple-logo.jpg";
+import { capitalize } from "lodash";
 
 interface Props {
   start: boolean;
@@ -100,7 +101,7 @@ function WebcamCapture({ start }: Props): JSX.Element {
   return (
     <Container>
       <Dialog open={dialogOpen} onClose={handleDialogClose}>
-        <DialogTitle>{fruit}</DialogTitle>
+        <DialogTitle>{capitalize(fruit || "")}</DialogTitle>
         <DialogContent>
           <DialogContentText>
             {fruitInfo?.Serving} has {fruitInfo?.Calories} calories.{" "}
