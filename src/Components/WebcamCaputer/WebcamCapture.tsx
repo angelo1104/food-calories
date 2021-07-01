@@ -18,6 +18,7 @@ import {
   PreviewScreen,
   dimensions,
   Placeholder,
+  FlipCameraButton,
 } from "./WebcamCapture.style";
 import { StartButton } from "../Content/Content.style";
 import Webcam from "react-webcam";
@@ -49,17 +50,18 @@ const dataURLtoFile = (dataurl: string, filename: string): File => {
 };
 
 function WebcamCapture({ start }: Props): JSX.Element {
-  const videoConstraints = {
-    width: dimensions.width,
-    height: dimensions.height,
-    facingMode: "user",
-  };
-
   const webcamRef = useRef(null);
   const [image, setImage] = useState<string | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [fruit, setFruit] = useState<string | null>(null);
   const [fruitInfo, setFruitInfo] = useState<Fruit | null>(null);
+  const [facingMode, setFacingMode] = useState<"user" | "environment">("user");
+
+  const videoConstraints = {
+    width: dimensions.width,
+    height: dimensions.height,
+    facingMode,
+  };
 
   const capture = useCallback(() => {
     if (webcamRef.current) {
@@ -96,6 +98,12 @@ function WebcamCapture({ start }: Props): JSX.Element {
   const handleDialogClose = () => {
     setDialogOpen(false);
     clearImage();
+  };
+
+  const flipCamera = () => {
+    setFacingMode((facingMode) =>
+      facingMode === "user" ? "environment" : "user"
+    );
   };
 
   return (
@@ -151,7 +159,8 @@ function WebcamCapture({ start }: Props): JSX.Element {
               className={"webcam"}
             />
           )}
-          {start && <RadioButton onClick={capture} fontSize={"large"} />}
+          {start && <RadioButton onClick={capture} />}
+          {start && <FlipCameraButton onClick={flipCamera} />}
         </>
       )}
     </Container>

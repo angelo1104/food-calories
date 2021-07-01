@@ -1,5 +1,11 @@
 import styled from "styled-components";
-import { Clear, RadioButtonUnchecked, Replay, Send } from "@material-ui/icons";
+import {
+  Clear,
+  FlipCameraIos,
+  RadioButtonUnchecked,
+  Replay,
+  Send,
+} from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 
 export const dimensions = {
@@ -48,6 +54,15 @@ export const Container = styled.div`
 export const RadioButton = styled(RadioButtonUnchecked)`
   position: absolute;
   bottom: 15%;
+  font-size: 50px !important;
+  cursor: pointer;
+  color: white;
+`;
+
+export const FlipCameraButton = styled(FlipCameraIos)`
+  position: absolute;
+  bottom: 15%;
+  right: 22%;
   font-size: 50px !important;
   cursor: pointer;
   color: white;
